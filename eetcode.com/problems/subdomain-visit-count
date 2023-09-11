@@ -1,0 +1,21 @@
+class Solution(object):
+    def subdomainVisits(self, cpdomains):
+        """
+        :type cpdomains: List[str]
+        :rtype: List[str]
+        """
+        domainDict = {}
+        for pair in cpdomains:
+            arr = pair.split()
+            count = int(arr[0])
+            domain = arr[1].split('.')
+            for i in range(len(domain)):
+                word = '.'.join(domain[i:])
+                if(word not in domainDict):
+                    domainDict[word] = int(count)
+                else:
+                    domainDict[word] = domainDict.get(word) + int(count)
+        dictlist = []
+        for key, value in domainDict.items():
+            dictlist.append(str(value) + ' ' + key)
+        return dictlist
